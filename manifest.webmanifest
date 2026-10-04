@@ -1,0 +1,14 @@
+{
+  "name": "MELVSA AMS — Association Management System",
+  "short_name": "MELVSA AMS",
+  "description": "Official MELVSA Association Management System access application.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f3f6fa",
+  "theme_color": "#071a35",
+  "icons": [
+    {"src":"icons/icon-192.png","sizes":"192x192","type":"image/png","purpose":"any maskable"},
+    {"src":"icons/icon-512.png","sizes":"512x512","type":"image/png","purpose":"any maskable"}
+  ]
+}
