@@ -1,5 +1,33 @@
-﻿<!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#071a35"><meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"><meta name="apple-mobile-web-app-title" content="MELVSA AMS"><link rel="manifest" href="manifest.webmanifest"><link rel="apple-touch-icon" href="icons/icon-192.png"><title>MELVSA AMS</title>
-<style>*{box-sizing:border-box}body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;background:#071a35;color:#fff;min-height:100vh}.wrap{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:28px}.card{text-align:center}.logo{width:min(220px,55vw);height:auto;display:block;margin:0 auto 24px}.title{font-size:30px;font-weight:800;margin:0 0 5px}.sub{font-size:15px;color:#c8d2df}.loading{margin-top:24px;font-size:13px;color:#9eacbc}.offline{display:none;margin:20px auto 0;padding:10px 14px;border-radius:10px;background:#fff4d7;color:#725400;font-size:13px;max-width:420px}body.offline .offline{display:block}</style></head>
-<body><main class="wrap"><section class="card"><img class="logo" src="icons/melvsa-logo.png" alt="MELVSA"><h1 class="title">MELVSA AMS</h1><div class="sub">Association Management System</div><div class="loading">Opening secure AMSâ€¦</div><div class="offline">No internet connection. MELVSA AMS requires a secure online connection.</div></section></main>
-<script>const AMS='https://script.google.com/macros/s/AKfycbz6rSFNF1o7RCggcfhtRmgn1_OmVQ2OcEB_dynHQ-L2xdzVrVpb99fx1XIovHYqyrjhew/exec';if('serviceWorker'in navigator)navigator.serviceWorker.register('./sw.js');function go(){if(!navigator.onLine){document.body.classList.add('offline');return}location.replace(AMS)}addEventListener('online',go);addEventListener('offline',()=>document.body.classList.add('offline'));setTimeout(go,350);</script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#24486f">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-title" content="MELVSA AMS">
+<meta name="application-name" content="MELVSA AMS">
+<title>MELVSA AMS</title>
+<link rel="manifest" href="./manifest.webmanifest?v=4">
+<link rel="apple-touch-icon" sizes="180x180" href="./icons/melvsa-180.png?v=4">
+<link rel="icon" type="image/png" sizes="192x192" href="./icons/melvsa-192.png?v=4">
+<link rel="preconnect" href="https://script.google.com">
+<link rel="preconnect" href="https://script.googleusercontent.com">
+<link rel="dns-prefetch" href="//script.google.com">
+<link rel="dns-prefetch" href="//script.googleusercontent.com">
+<style>
+html,body{width:100%;height:100%;margin:0;padding:0;overflow:hidden;background:#f3f6fa}
+#portal{display:block;width:100%;height:100%;border:0;background:#f3f6fa}
+</style>
+</head>
+<body>
+<iframe id="portal" src="about:blank" data-src="https://script.google.com/macros/s/AKfycbz6rSFNF1o7RCggcfhtRmgn1_OmVQ2OcEB_dynHQ-L2xdzVrVpb99fx1XIovHYqyrjhew/exec" title="MELVSA Association Management System" allow="clipboard-read; clipboard-write" fetchpriority="high"></iframe>
+<script>
+const portal=document.getElementById("portal");
+portal.src=portal.dataset.src;
+if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=4"));}
+</script>
+</body>
+</html>
