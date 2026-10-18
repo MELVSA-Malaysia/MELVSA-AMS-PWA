@@ -20,13 +20,32 @@
 <style>
 html,body{width:100%;height:100%;margin:0;padding:0;overflow:hidden;background:#f3f6fa}
 #portal{display:block;width:100%;height:100%;border:0;background:#f3f6fa}
+#gatewayStatus{position:fixed;inset:0;z-index:5;display:flex;align-items:center;justify-content:center;background:#f3f6fa;font-family:system-ui,-apple-system,sans-serif;color:#193759;text-align:center;padding:24px}
+#gatewayStatus[hidden]{display:none}
+#gatewayStatus .panel{max-width:340px}
+#gatewayStatus .spinner{width:32px;height:32px;margin:0 auto 18px;border:3px solid #cbd8e7;border-top-color:#24486f;border-radius:50%;animation:amsSpin 1s linear infinite}
+@keyframes amsSpin{to{transform:rotate(360deg)}}
+#gatewayStatus button{border:0;border-radius:9px;padding:12px 20px;background:#24486f;color:white;font-weight:600}
 </style>
 </head>
 <body>
+<div id="gatewayStatus" role="status" aria-live="polite"><div class="panel"><div class="spinner"></div><strong>Opening MELVSA AMS</strong><p id="gatewayMessage">Connecting to the secure gateway…</p><button id="gatewayRetry" type="button" hidden>Retry connection</button></div></div>
 <iframe id="portal" src="about:blank" data-src="https://script.google.com/macros/s/AKfycbz6rSFNF1o7RCggcfhtRmgn1_OmVQ2OcEB_dynHQ-L2xdzVrVpb99fx1XIovHYqyrjhew/exec" title="MELVSA Association Management System" allow="clipboard-read; clipboard-write" fetchpriority="high"></iframe>
 <script>
 const portal=document.getElementById("portal");
-portal.src=portal.dataset.src;
+const status=document.getElementById("gatewayStatus");
+const message=document.getElementById("gatewayMessage");
+const retry=document.getElementById("gatewayRetry");
+let watchdog;
+function loadGateway(){
+  status.hidden=false;retry.hidden=true;message.textContent="Connecting to the secure gateway…";
+  clearTimeout(watchdog);
+  watchdog=setTimeout(()=>{message.textContent="The gateway is taking longer than expected. Check your connection or retry.";retry.hidden=false;},20000);
+  portal.src=portal.dataset.src;
+}
+portal.addEventListener("load",()=>{clearTimeout(watchdog);status.hidden=true;});
+retry.addEventListener("click",()=>{portal.src="about:blank";loadGateway();});
+loadGateway();
 if("serviceWorker" in navigator){window.addEventListener("load",()=>navigator.serviceWorker.register("./sw.js?v=7"));}
 </script>
 </body>
